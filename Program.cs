@@ -31,7 +31,7 @@ namespace AdventOfCode
                     break;
                 }
 
-                IPuzzle puzzle = (IPuzzle) Activator.CreateInstance(puzzleType);
+                IPuzzle puzzle = (IPuzzle)Activator.CreateInstance(puzzleType);
                 puzzle.LoadInput($"Day{day}\\InputFiles\\puzzle{puzzleNumber}Input.txt");
                 System.Console.WriteLine($"Puzzle {puzzleNumber} result: {puzzle.GetResult()}");
             }

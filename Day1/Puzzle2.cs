@@ -25,7 +25,7 @@ namespace AdventOfCode.Day1
             foreach (var mass in modulesMasses)
             {
                 var curr = mass / 3 - 2;
-                for (var fuelNeeded = mass/3 - 2; fuelNeeded > 0; fuelNeeded = fuelNeeded/3 - 2)
+                for (var fuelNeeded = mass / 3 - 2; fuelNeeded > 0; fuelNeeded = fuelNeeded / 3 - 2)
                 {
                     totalFuelNeeded += fuelNeeded;
                 }

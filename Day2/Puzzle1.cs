@@ -15,8 +15,6 @@ namespace AdventOfCode.Day2
 
     public class Puzzle1 : IPuzzle
     {
-
-
         private List<int> _values;
         public void LoadInput(string inputPath)
         {
