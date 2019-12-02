@@ -8,15 +8,15 @@ namespace AdventOfCode.Day1
 {
     public class Puzzle1 : IPuzzle
     {
-        private IEnumerable<int> modulesMasses;
+        private List<int> modulesMasses;
         public void LoadInput(string inputPath)
         {
-            var logFile = File.ReadAllLines(inputPath);
-            modulesMasses = new List<string>(logFile)
-                                .Select(line => int.Parse(line));
+            modulesMasses = File.ReadAllLines(inputPath)
+                                .Select(line => int.Parse(line))
+                                .ToList();
         }
 
-        public string GetResult() 
-            => modulesMasses.Select(n => n / 3 - 2).Sum().ToString();
+        public int GetResult() 
+            => modulesMasses.Select(n => n / 3 - 2).Sum();
     }
 }

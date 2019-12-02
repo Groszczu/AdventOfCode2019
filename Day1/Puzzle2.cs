@@ -8,18 +8,18 @@ namespace AdventOfCode.Day1
 {
     public class Puzzle2 : IPuzzle
     {
-        private IEnumerable<int> modulesMasses;
+        private List<int> modulesMasses;
         public void LoadInput(string inputPath)
         {
-            var logFile = File.ReadAllLines(inputPath);
-            modulesMasses = new List<string>(logFile)
-                                .Select(line => int.Parse(line));
+            modulesMasses = File.ReadAllLines(inputPath)
+                                .Select(line => int.Parse(line))
+                                .ToList();
         }
 
-        public string GetResult()
+        public int GetResult()
             => CalculateFuelNeeded();
 
-        private string CalculateFuelNeeded()
+        private int CalculateFuelNeeded()
         {
             var totalFuelNeeded = 0;
             foreach (var mass in modulesMasses)
@@ -31,7 +31,7 @@ namespace AdventOfCode.Day1
                 }
             }
 
-            return totalFuelNeeded.ToString();
+            return totalFuelNeeded;
         }
     }
 }
