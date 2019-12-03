@@ -22,41 +22,47 @@ namespace AdventOfCode.Day3
 
         protected List<Segment> GetSegments(List<string> commands)
         {
-            var edges = new List<Point>{ new Point(0, 0) };
+            var edges = new List<Point> { new Point(0, 0) };
             var point = new Point(0, 0);
-            foreach (var command in commands)
-            {
-                var destination = command[0];
-                var value = int.Parse(command.Substring(1));
-                switch(destination)
+
+            edges.AddRange(
+                commands.Select(command =>
                 {
-                    case 'L': point.X += -1 * value;
-                        break;
-                    case 'R': point.X += value;
-                        break;
-                    case 'U': point.Y += value;
-                        break;
-                    case 'D': point.Y += -1 * value;
-                        break;
-                    default:
-                        throw new InvalidDataException();
-                }
+                    var destination = command[0];
+                    var value = int.Parse(command.Substring(1));
+                    switch (destination)
+                    {
+                        case 'L':
+                            point.X += -1 * value;
+                            break;
+                        case 'R':
+                            point.X += value;
+                            break;
+                        case 'U':
+                            point.Y += value;
+                            break;
+                        case 'D':
+                            point.Y += -1 * value;
+                            break;
+                        default:
+                            throw new InvalidDataException();
+                    }
 
-                edges.Add(new Point(point));
-            }
+                    return new Point(point);
+                })
+            );
 
-            var segments = new List<Segment>();
-            for (var i = 0; i < edges.Count() - 1; i++)
-            {
-                segments.Add(Segment.FromIEnumerable(edges.Skip(i).Take(2)));
-            }
+            var segments = edges.Take(edges.Count() - 1)
+                .Select((e, i) => new Segment(e, edges[i + 1]))
+                .ToList();
+
             return segments;
         }
 
         protected bool Intersects(Segment s1, Segment s2)
         {
             Segment vertical = null;
-            Segment horizontal= null;
+            Segment horizontal = null;
             if (IsVerticalSegment(s1))
             {
                 vertical = s1;
@@ -65,14 +71,14 @@ namespace AdventOfCode.Day3
                     horizontal = s2;
                 }
             }
-            else if(IsVerticalSegment(s2))
+            else if (IsVerticalSegment(s2))
             {
                 vertical = s2;
                 if (IsHorizontalSegment(s1))
                 {
                     horizontal = s1;
                 }
-                
+
             }
             if (vertical == null || horizontal == null)
             {
@@ -113,7 +119,7 @@ namespace AdventOfCode.Day3
         protected Point GetIntersectionPoint(Segment s1, Segment s2)
         {
             Segment vertical = null;
-            Segment horizontal= null;
+            Segment horizontal = null;
             if (IsVerticalSegment(s1))
             {
                 vertical = s1;
@@ -122,7 +128,7 @@ namespace AdventOfCode.Day3
                     horizontal = s2;
                 }
             }
-            else if(IsVerticalSegment(s2))
+            else if (IsVerticalSegment(s2))
             {
                 vertical = s2;
                 if (IsHorizontalSegment(s1))
@@ -130,8 +136,8 @@ namespace AdventOfCode.Day3
                     horizontal = s1;
                 }
             }
-            
-            return new Point(vertical.P1.X, horizontal.P1.Y );
+
+            return new Point(vertical.P1.X, horizontal.P1.Y);
         }
     }
 }
