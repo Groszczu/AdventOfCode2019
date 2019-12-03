@@ -26,7 +26,7 @@ namespace AdventOfCode.Day2
         public int GetResult()
             => CalculateResult(12, 2);
 
-        public int CalculateResult(int noun, int verb)
+        private int CalculateResult(int noun, int verb)
         {
             var copyOfValues = new List<int>(_values);
             copyOfValues[1] = noun;
