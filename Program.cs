@@ -27,12 +27,12 @@ namespace AdventOfCode
                 Type puzzleType = Type.GetType($"AdventOfCode.Day{day}.Puzzle{puzzleNumber}");
                 if (puzzleType == null)
                 {
-                    System.Console.WriteLine($"{day} day is not implemented yet");
+                    System.Console.WriteLine($"Day {day} is not implemented yet");
                     break;
                 }
 
                 IPuzzle puzzle = (IPuzzle)Activator.CreateInstance(puzzleType);
-                puzzle.LoadInput($"Day{day}\\InputFiles\\puzzle{puzzleNumber}Input.txt");
+                puzzle.LoadInput($"Day{day}\\InputFiles\\puzzleInput.txt");
                 System.Console.WriteLine($"Puzzle {puzzleNumber} result: {puzzle.GetResult()}");
             }
         }
