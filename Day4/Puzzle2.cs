@@ -10,7 +10,7 @@ namespace AdventOfCode.Day4
 
         private int CalculateResult()
         {
-            var result = Enumerable.Range(_min, _max - _min)
+            var result = Enumerable.Range(Min, Max - Min)
                 .Count(n => 
                 {
                     var digits = GetArrayOfDigits(n);

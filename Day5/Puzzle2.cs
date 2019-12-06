@@ -12,7 +12,7 @@ namespace AdventOfCode.Day5
 
         private int CalculateResult()
         {
-            var copyOfValues = new List<int>(_values);
+            var copyOfValues = new List<int>(Values);
             for (var i = 0; i < copyOfValues.Count();)
             {
                 var instruction = copyOfValues[i];
@@ -116,7 +116,7 @@ namespace AdventOfCode.Day5
                 }
             }
 
-            return _lastOutput;
+            return LastOutput;
         }
     }
 }

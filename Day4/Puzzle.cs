@@ -8,15 +8,15 @@ namespace AdventOfCode.Day4
 {
     public abstract class Puzzle : IPuzzle
     {
-        protected int _min;
-        protected int _max;
+        protected int Min { get; private set; }
+        protected int Max { get; private set; }
         public void LoadInput(string inputPath)
         {
             var input = File.ReadAllText(inputPath);
             var pattern = new Regex(@"^(?<min>(\d+))\-(?<max>(\d+))$");
 
-            _min = int.Parse(pattern.Match(input).Groups["min"].Value);
-            _max = int.Parse(pattern.Match(input).Groups["max"].Value);
+            Min = int.Parse(pattern.Match(input).Groups["min"].Value);
+            Max = int.Parse(pattern.Match(input).Groups["max"].Value);
         }
 
         public abstract int GetResult();

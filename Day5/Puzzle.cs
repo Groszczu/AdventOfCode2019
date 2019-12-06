@@ -40,12 +40,12 @@ namespace AdventOfCode.Day5
             { Operation.Halt, 0 }
         };
 
-        protected List<int> _values;
+        protected List<int> Values { get; private set; }
 
-        protected int _lastOutput = 0;
+        protected int LastOutput { get; set; } = 0;
         public void LoadInput(string inputPath)
         {
-            _values = File.ReadAllText(inputPath)
+            Values = File.ReadAllText(inputPath)
                 .Split(',')
                 .Select(int.Parse)
                 .ToList();
@@ -54,7 +54,7 @@ namespace AdventOfCode.Day5
 
         protected void Output(int value)
         {
-            _lastOutput = value;
+            LastOutput = value;
             System.Console.WriteLine(value);
         }
 

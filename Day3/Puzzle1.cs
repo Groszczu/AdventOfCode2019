@@ -11,8 +11,8 @@ namespace AdventOfCode.Day3
 
         private int CalculateResult()
         {
-            var wire1Segments = GetSegments(_wire1Commands);
-            var wire2Segments = GetSegments(_wire2Commands);
+            var wire1Segments = GetSegments(Wire1Commands);
+            var wire2Segments = GetSegments(Wire2Commands);
 
             var intersections = new List<Point>();
             foreach (var segment1 in wire1Segments)

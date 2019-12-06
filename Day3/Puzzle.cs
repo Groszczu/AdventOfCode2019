@@ -8,13 +8,13 @@ namespace AdventOfCode.Day3
 {
     public abstract class Puzzle : IPuzzle
     {
-        protected List<string> _wire1Commands;
-        protected List<string> _wire2Commands;
+        protected List<string> Wire1Commands { get; private set; }
+        protected List<string> Wire2Commands { get; private set; }
         public void LoadInput(string inputPath)
         {
             var fileReader = new StreamReader(inputPath);
-            _wire1Commands = fileReader.ReadLine().Split(',').ToList();
-            _wire2Commands = fileReader.ReadLine().Split(',').ToList();
+            Wire1Commands = fileReader.ReadLine().Split(',').ToList();
+            Wire2Commands = fileReader.ReadLine().Split(',').ToList();
             fileReader.Close();
         }
 
