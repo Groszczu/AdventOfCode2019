@@ -5,7 +5,7 @@ using AdventOfCode.Core;
 
 namespace AdventOfCode.Day7
 {
-    public class Puzzle2 : AdventOfCode.Day5.Puzzle
+    public class Puzzle2 : Puzzle
     {
         public override int GetResult()
             => CalculateResult();
@@ -58,14 +58,6 @@ namespace AdventOfCode.Day7
             }
 
             return lastOutput.Value;
-        }
-
-        private static IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> list, int length)
-        {
-            if (length == 1) return list.Select(t => new T[] { t });
-            return GetPermutations(list, length - 1)
-                .SelectMany(t => list.Where(o => !t.Contains(o)),
-                    (t1, t2) => t1.Concat(new T[] { t2 }));
         }
     }
 }
