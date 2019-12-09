@@ -17,7 +17,7 @@ namespace AdventOfCode.Day6
             }
         }
 
-        public abstract int GetResult();
+        public abstract string GetResult();
     }
 
 }

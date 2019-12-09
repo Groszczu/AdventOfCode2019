@@ -7,8 +7,8 @@ namespace AdventOfCode.Day7
 {
     public class Puzzle1 : Puzzle
     {
-        public override int GetResult()
-            => CalculateResult();
+        public override string GetResult()
+            => CalculateResult().ToString();
 
         private int CalculateResult()
         {
@@ -26,9 +26,9 @@ namespace AdventOfCode.Day7
             var lastOutput = 0;
             foreach (var setting in phaseSettings)
             {
-                var computer = new IntcodeComputer(new int[] { setting, lastOutput });
+                var computer = new IntcodeComputer(new long[] { setting, lastOutput });
                 computer.RunProgram(Program, true);
-                lastOutput = computer.OutputValue;
+                lastOutput = (int)computer.OutputValue;
             }
 
             return lastOutput;

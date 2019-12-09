@@ -16,7 +16,7 @@ namespace AdventOfCode.Day1
                                 .ToList();
         }
 
-        public int GetResult()
-            => modulesMasses.Select(n => n / 3 - 2).Sum();
+        public string GetResult()
+            => modulesMasses.Select(n => n / 3 - 2).Sum().ToString();
     }
 }

@@ -23,6 +23,6 @@ namespace AdventOfCode.Day8
                 .ToList();
         }   
         
-        public abstract int GetResult();
+        public abstract string GetResult();
     }
 }

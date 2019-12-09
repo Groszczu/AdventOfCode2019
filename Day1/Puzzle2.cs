@@ -16,8 +16,8 @@ namespace AdventOfCode.Day1
                                 .ToList();
         }
 
-        public int GetResult()
-            => CalculateFuelNeeded();
+        public string GetResult()
+            => CalculateFuelNeeded().ToString();
 
         private int CalculateFuelNeeded()
         {

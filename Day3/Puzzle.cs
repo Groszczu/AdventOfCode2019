@@ -18,7 +18,7 @@ namespace AdventOfCode.Day3
             fileReader.Close();
         }
 
-        public abstract int GetResult();
+        public abstract string GetResult();
 
         protected List<Segment> GetSegments(List<string> commands)
         {

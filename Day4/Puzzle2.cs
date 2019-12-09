@@ -5,8 +5,8 @@ namespace AdventOfCode.Day4
 {
     public class Puzzle2 : Puzzle
     {
-        public override int GetResult()
-            => CalculateResult();
+        public override string GetResult()
+            => CalculateResult().ToString();
 
         private int CalculateResult()
         {

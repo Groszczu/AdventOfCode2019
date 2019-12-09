@@ -23,8 +23,8 @@ namespace AdventOfCode.Day2
                         .Select(int.Parse)
                         .ToList();
         }
-        public int GetResult()
-            => CalculateResult(12, 2);
+        public string GetResult()
+            => CalculateResult(12, 2).ToString();
 
         private int CalculateResult(int noun, int verb)
         {

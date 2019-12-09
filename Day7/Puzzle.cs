@@ -7,16 +7,16 @@ namespace AdventOfCode.Day7
 {
     public abstract class Puzzle : IPuzzle
     {
-        protected List<int> Program { get; private set; }
+        protected List<long> Program { get; private set; }
 
         public void LoadInput(string inputPath)
         {
             Program = File.ReadAllText(inputPath)
                 .Split(',')
-                .Select(int.Parse)
+                .Select(long.Parse)
                 .ToList();
         }
-        public abstract int GetResult();
+        public abstract string GetResult();
 
         protected static IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> list, int length)
         {

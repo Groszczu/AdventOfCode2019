@@ -18,8 +18,8 @@ namespace AdventOfCode.Day2
                         .ToList();
         }
 
-        public int GetResult()
-            => CalculateResult();
+        public string GetResult()
+            => CalculateResult().ToString();
 
         private int CalculateResult()
         {

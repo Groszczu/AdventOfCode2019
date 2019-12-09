@@ -4,10 +4,10 @@ namespace AdventOfCode.Day8
 {
     public class Puzzle2 : Puzzle
     {
-        public override int GetResult()
+        public override string GetResult()
             => CalculateResult();
 
-        private int CalculateResult()
+        private string CalculateResult()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             for (var pixel = 0; pixel < ImageWidth*ImageHeight; pixel++)
@@ -39,7 +39,7 @@ namespace AdventOfCode.Day8
             }
             Console.WriteLine();
 
-            return 0;
+            return "";
         }
     }
 }

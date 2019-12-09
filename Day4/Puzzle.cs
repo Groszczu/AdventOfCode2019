@@ -19,7 +19,7 @@ namespace AdventOfCode.Day4
             Max = int.Parse(pattern.Match(input).Groups["max"].Value);
         }
 
-        public abstract int GetResult();
+        public abstract string GetResult();
 
         protected int[] GetArrayOfDigits(int n)
         {
