@@ -16,6 +16,9 @@ namespace AdventOfCode.Core
             Y = p.Y;
         }
 
+        public static Point operator +(Point a, Point b) => new Point(a.X + b.X, a.Y + b.Y);
+        public static Point operator -(Point a, Point b) => new Point(a.X - b.X, a.Y - b.Y);
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Point);

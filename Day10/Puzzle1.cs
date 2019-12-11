@@ -12,44 +12,45 @@ namespace AdventOfCode.Day10
 
         private int CalculateResult()
         {
-            var rows = Asteroids.Count();
-            var columns = Asteroids[0].Count();
-            var maxDetected = 0;
-            for (var row = 0; row < rows; row++)
+            var asteroidsCoords = new HashSet<Point>();
+            for (var row = 0; row < Rows; row++)
             {
-                for (var column = 0; column < columns; column++)
+                for (var column = 0; column < Columns; column++)
                 {
-                    if (!Asteroids[row][column])
+                    if (Asteroids[row][column])
                     {
-                        continue;
+                        asteroidsCoords.Add(new Point(column, row));
                     }
-
-                    var currCoordinates = new Point(column, row);
-                    var detected = 1;
-                    var vectorsBlocked = new HashSet<Point>();
-                    for (var r = 0; r < rows; r++)
-                    {
-                        for (var c = 0; c < columns; c++)
-                        {
-                            if (!Asteroids[r][c])
-                            {
-                                continue;
-                            }
-
-                            var vector = GetVector(currCoordinates, new Point(c, r));
-
-                            if (!vectorsBlocked.Contains(vector))
-                            {
-                                detected++;
-                                vectorsBlocked.Add(vector);
-                            }
-                        }
-                    }
-
-                    maxDetected = Math.Max(maxDetected, detected);
                 }
             }
 
+            var maxDetected = 0;
+            foreach (var from in asteroidsCoords)
+            {
+                var detected = 0;
+                foreach (var to in asteroidsCoords)
+                {
+                    if (from == to)
+                    {
+                        continue;
+                    }
+                    var vector = GetVector(from, to);
+                    var blocked = false;
+                    for (var pos = from + vector; !pos.Equals(to); pos += vector)
+                    {
+                        if (asteroidsCoords.Contains(pos))
+                        {
+                            blocked = true;
+                            break;
+                        }
+                    }
+                    if (!blocked)
+                    {
+                        detected++;
+                    }
+                }
+                maxDetected = Math.Max(maxDetected, detected);
+            }
             return maxDetected;
         }
     }

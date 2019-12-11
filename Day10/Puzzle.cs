@@ -8,6 +8,8 @@ namespace AdventOfCode.Day10
     public abstract class Puzzle : IPuzzle
     {
         protected bool[][] Asteroids;
+        protected int Rows => Asteroids.Count();
+        protected int Columns => Asteroids[0].Count();
         public void LoadInput(string inputPath)
         {
             var lines = File.ReadAllLines(inputPath);
@@ -18,22 +20,26 @@ namespace AdventOfCode.Day10
 
         protected Point GetVector(Point src, Point dst)
         {
-            var x = dst.X - src.X;
-            var y = dst.Y - src.Y;
-            
-            y = x == 0 && y != 0 ? 1 : y;
-            x = y == 0 && x != 0 ? 1 : x;
+            var result = dst - src;
 
-            var divider = GreatestCommonDivider(x, y);
-            x /= divider;
-            y /= divider;
-            return new Point(x, y);
+            var divider = GreatestCommonDivider(result.X, result.Y);
+            result.X /= divider;
+            result.Y /= divider;
+            return result;
         }
 
         protected int GreatestCommonDivider(int a, int b)
         {
             a = Math.Abs(a);
             b = Math.Abs(b);
+            if (a == 0)
+            {
+                return b != 0 ? b : 1;
+            }
+            if (b == 0)
+            {
+                return a != 0 ? a : 1;
+            }
             while (b != 0)
             {
                 var c = a % b;
