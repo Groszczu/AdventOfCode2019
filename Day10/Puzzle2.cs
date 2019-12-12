@@ -34,7 +34,8 @@ namespace AdventOfCode.Day10
                 }
             }
 
-            return destroyedPoints.Peek().X * 100 + destroyedPoints.Peek().Y;
+            var lastDestroyed = destroyedPoints.Peek();
+            return lastDestroyed.X * 100 + lastDestroyed.Y;
         }
     }
 }
