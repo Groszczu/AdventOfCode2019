@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 using AdventOfCode.Core;
 
 namespace AdventOfCode.Day10
@@ -8,12 +9,25 @@ namespace AdventOfCode.Day10
     public abstract class Puzzle : IPuzzle
     {
         protected bool[][] Asteroids;
+        protected HashSet<Point> AsteroidsCoords { get; private set; }
         protected int Rows => Asteroids.Count();
         protected int Columns => Asteroids[0].Count();
         public void LoadInput(string inputPath)
         {
             var lines = File.ReadAllLines(inputPath);
             Asteroids = lines.Select(l => l.Select(p => p == '#').ToArray()).ToArray();
+
+            AsteroidsCoords = new HashSet<Point>();
+            for (var row = 0; row < Rows; row++)
+            {
+                for (var column = 0; column < Columns; column++)
+                {
+                    if (Asteroids[row][column])
+                    {
+                        AsteroidsCoords.Add(new Point(column, row));
+                    }
+                }
+            }
         }
 
         public abstract string GetResult();
