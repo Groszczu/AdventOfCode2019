@@ -32,6 +32,34 @@ namespace AdventOfCode.Day10
 
         public abstract string GetResult();
 
+        protected int DetectedAsteroidsCount(Point from)
+        {
+            var detected = 0;
+            foreach (var to in AsteroidsCoords)
+            {
+                if (from == to)
+                {
+                    continue;
+                }
+                var vector = GetVector(from, to);
+                var blocked = false;
+                for (var pos = from + vector; !pos.Equals(to); pos += vector)
+                {
+                    if (AsteroidsCoords.Contains(pos))
+                    {
+                        blocked = true;
+                        break;
+                    }
+                }
+                if (!blocked)
+                {
+                    detected++;
+                }
+            }
+
+            return detected;
+        }
+
         protected Point GetVector(Point src, Point dst)
         {
             var result = dst - src;
@@ -42,6 +70,10 @@ namespace AdventOfCode.Day10
             return result;
         }
 
+        protected Point GetUnscaledVector(Point src, Point dst)
+        {
+            return dst - src;
+        }
         protected int GreatestCommonDivider(int a, int b)
         {
             a = Math.Abs(a);
