@@ -12,8 +12,9 @@ namespace AdventOfCode.Day5
 
         private int CalculateResult()
         {
-            IntcodeComputer = new Core.IntcodeComputer(new long[] { InputValue });
-            IntcodeComputer.RunProgram(Program);
+            IntcodeComputer = new Core.IntcodeComputer(Program);
+            IntcodeComputer.AddInputValue(InputValue);
+            IntcodeComputer.RunProgram();
             return (int)IntcodeComputer.OutputValue;
         }
     }

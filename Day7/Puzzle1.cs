@@ -26,8 +26,10 @@ namespace AdventOfCode.Day7
             var lastOutput = 0;
             foreach (var setting in phaseSettings)
             {
-                var computer = new IntcodeComputer(new long[] { setting, lastOutput });
-                computer.RunProgram(Program, true);
+                var computer = new IntcodeComputer(Program);
+                computer.AddInputValue(setting);
+                computer.AddInputValue(lastOutput);
+                computer.RunProgram(breakOnOutput: true);
                 lastOutput = (int)computer.OutputValue;
             }
 

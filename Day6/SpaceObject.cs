@@ -16,7 +16,7 @@ namespace AdventOfCode.Day6
             get
             {
                 var result = 0;
-                for (var currentObject = Parent; currentObject != null; result++)
+                for (var currentObject = Parent; currentObject?.Parent != null; result++)
                 {
                     currentObject = currentObject?.Parent;
                 }

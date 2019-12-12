@@ -13,6 +13,8 @@ namespace AdventOfCode.Core
         public int _relativeBaseOffset = 0;
         private int _instructionPointer = 0;
 
+        private int _numberOfInstructions;
+
         private readonly Dictionary<Operation, int> _parameterCount = new Dictionary<Operation, int>
         {
             { Operation.Add, 3 },
@@ -31,9 +33,18 @@ namespace AdventOfCode.Core
 
         private List<long> _program;
 
-        public IntcodeComputer(IEnumerable<long> input)
+        public IntcodeComputer(List<long> program)
         {
-            _inputValues = new Queue<long>(input);
+            LoadProgram(program);
+            _inputValues = new Queue<long>();
+        }
+
+        public void LoadProgram(List<long> program)
+        {
+            _program = new List<long>(program);
+            _numberOfInstructions = _program.Count;
+            _program.AddRange(new long[MaxSize - _program.Count]);
+            _instructionPointer = 0;
         }
 
         public void AddInputValue(long value)
@@ -41,18 +52,14 @@ namespace AdventOfCode.Core
             _inputValues.Enqueue(value);
         }
 
-        public int RunProgram(List<long> program = null, bool brakeOnOutput = false)
+        public int RunProgram(bool breakOnOutput = false)
         {
-            if (program != null)
+            if (FinishedProgram)
             {
-                _program = new List<long>(program);
-                _program.AddRange(new long[MaxSize - _program.Count]);
-                _instructionPointer = 0;
+                return _instructionPointer;
             }
 
-            var numberOfInstructions = program.Count;
-
-            while (_instructionPointer < numberOfInstructions)
+            while (_instructionPointer < _numberOfInstructions)
             {
                 var instruction = (int)_program[_instructionPointer];
                 var op = ParseToOperation(instruction);
@@ -99,7 +106,7 @@ namespace AdventOfCode.Core
                         {
                             var value = GetParamValue(parameters[0].ToTuple());
                             OutputValue = value;
-                            if (brakeOnOutput)
+                            if (breakOnOutput)
                             {
                                 _instructionPointer += 1 + _parameterCount[op];
                                 return _instructionPointer;
@@ -159,7 +166,6 @@ namespace AdventOfCode.Core
 
                             break;
                         }
-
                 }
 
                 if (!jumped)

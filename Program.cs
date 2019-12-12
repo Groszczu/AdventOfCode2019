@@ -1,9 +1,5 @@
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 using AdventOfCode.Core;
-using AdventOfCode.Day1;
 
 namespace AdventOfCode
 {
@@ -13,7 +9,7 @@ namespace AdventOfCode
         static void Main()
         {
             System.Console.WriteLine("Enter AdventOfCode day number:");
-            var day = "10";//Console.ReadLine();
+            var day = Console.ReadLine();
             if (!IsCorrectDayInput(day))
             {
                 System.Console.WriteLine("AdventOfCode has 25 days. Please enter number between 1 and 25");

@@ -26,7 +26,8 @@ namespace AdventOfCode.Day7
             var computers = new List<IntcodeComputer>();
             foreach (var setting in phaseSettings)
             {
-                var computer = new IntcodeComputer(new long[] { setting });
+                var computer = new IntcodeComputer(Program);
+                computer.AddInputValue(setting);
                 computers.Add(computer);
             }
 
@@ -43,10 +44,12 @@ namespace AdventOfCode.Day7
                     currComputer.AddInputValue(lastOutput.Value);
                 }
 
-                var programToRun = currComputer.HasLoadedProgram ?
-                    null : Program;
+                if(!currComputer.HasLoadedProgram)
+                {
+                    currComputer.LoadProgram(Program);
+                }
 
-                currComputer.RunProgram(programToRun, true);
+                currComputer.RunProgram(true);
 
                 lastOutput = (int)currComputer.OutputValue;
 

@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace AdventOfCode.Day8
 {
@@ -9,7 +10,7 @@ namespace AdventOfCode.Day8
 
         private string CalculateResult()
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            var sb = new StringBuilder();
             for (var pixel = 0; pixel < ImageWidth*ImageHeight; pixel++)
             {
                 var isBlack = false;
@@ -33,13 +34,13 @@ namespace AdventOfCode.Day8
                 }
                 if (pixel % ImageWidth == 0)
                 {
-                    Console.WriteLine();
+                    sb.Append('\n');
                 }
-                Console.Write(isBlack ? '\u25AE' : ' ');
+                sb.Append(isBlack ? ' ' : '#');
             }
-            Console.WriteLine();
+            sb.Append('\n');
 
-            return "";
+            return sb.ToString();
         }
     }
 }
