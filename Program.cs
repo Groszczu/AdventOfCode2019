@@ -9,7 +9,7 @@ namespace AdventOfCode
         static void Main()
         {
             System.Console.WriteLine("Enter AdventOfCode day number:");
-            var day = "12";//Console.ReadLine();
+            var day = "13";//Console.ReadLine();
             if (!IsCorrectDayInput(day))
             {
                 System.Console.WriteLine("AdventOfCode has 25 days. Please enter number between 1 and 25");

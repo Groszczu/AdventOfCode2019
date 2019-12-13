@@ -12,6 +12,9 @@ namespace AdventOfCode.Core
             X = x;
             Y = y;
         }
+
+        public Point(long x, long y) : this((int)x, (int)y) {}
+
         public Point(Point p)
         {
             X = p.X;
