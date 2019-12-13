@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -55,9 +56,9 @@ namespace AdventOfCode.Day12
             }
         }
 
-        protected bool AreAllInInitialState()
+        public static long Lcm(long a, long b)
         {
-            return Moons.All(m => m.IsRepeatedState);
+            return Math.Abs(a * b)/AdventOfCode.Day10.Puzzle.Gcd(a, b);
         }
 
         protected void Step()

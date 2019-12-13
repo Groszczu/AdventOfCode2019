@@ -64,9 +64,9 @@ namespace AdventOfCode.Day10
         {
             var result = dst - src;
 
-            var divider = GreatestCommonDivider(result.X, result.Y);
-            result.X /= divider;
-            result.Y /= divider;
+            var divisor = (int)Gcd(result.X, result.Y);
+            result.X /= divisor;
+            result.Y /= divisor;
             return result;
         }
 
@@ -74,7 +74,8 @@ namespace AdventOfCode.Day10
         {
             return dst - src;
         }
-        protected int GreatestCommonDivider(int a, int b)
+
+        public static long Gcd(long a, long b)
         {
             a = Math.Abs(a);
             b = Math.Abs(b);

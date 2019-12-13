@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace AdventOfCode.Day12
 {
@@ -7,17 +8,36 @@ namespace AdventOfCode.Day12
         public override string GetResult()
             => CalculateResult().ToString();
 
-        private ulong CalculateResult()
+        private long CalculateResult()
         {
-            for (ulong step = 1UL; ; step++)
+            var xStepsCycle = 0;
+            var yStepsCycle = 0;
+            var zStepsCycle = 0;
+
+            var steps = 0;
+            while (xStepsCycle == 0 || yStepsCycle == 0 || zStepsCycle == 0)
             {
+                steps++;
                 SimulateGravity();
                 Step();
-                if (AreAllInInitialState())
+
+                if (xStepsCycle == 0 && Moons.All(m => m.Velocity.X == 0))
                 {
-                    return step;
+                    xStepsCycle = steps;
+                }
+                
+                if (yStepsCycle == 0 && Moons.All(m => m.Velocity.Y == 0))
+                {
+                    yStepsCycle = steps;
+                }
+
+                if (zStepsCycle == 0 && Moons.All(m => m.Velocity.Z == 0))
+                {
+                    zStepsCycle = steps;
                 }
             }
+
+            return 2 * Lcm(xStepsCycle, Lcm(yStepsCycle, zStepsCycle));
         }
     }
 }

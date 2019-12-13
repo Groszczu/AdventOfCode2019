@@ -9,7 +9,7 @@ namespace AdventOfCode.Day12
 
         private int CalculateResult()
         {
-            SimulateSteps(10);
+            SimulateSteps(1000);
             return TotalEnergy;
         }
     }
