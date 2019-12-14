@@ -9,7 +9,7 @@ namespace AdventOfCode.Core
         private const int MaxSize = 4096;
         public long OutputValue { get; private set; }
         public bool HasLoadedProgram => _program != null;
-        public bool FinishedProgram => _instructionPointer == -1 || _instructionPointer >= _program?.Count;
+        public bool FinishedProgram => _instructionPointer == -1 || _instructionPointer >= _numberOfInstructions;
         public int _relativeBaseOffset = 0;
         private int _instructionPointer = 0;
 
@@ -48,6 +48,14 @@ namespace AdventOfCode.Core
                 _program.AddRange(new long[MaxSize - _program.Count]);
             }
             _instructionPointer = 0;
+        }
+
+        public void OverrideFirstInstruction(long newValue)
+        {
+            if (_program != null && _program.Count > 0)
+            {
+                _program[0] = newValue;
+            }
         }
 
         public void AddInputValue(long value)
